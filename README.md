@@ -1,2 +1,3 @@
 # tenzies-game
-Simple react app
+
+Simple react app created using Vite
