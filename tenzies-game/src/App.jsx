@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Button from "./components/Button";
 import Content from "./components/Content";
 import Die from "./components/Die";
 
@@ -15,22 +14,19 @@ export default function App() {
     return newDice;
   }
 
+  function rollDice() {
+    setDice(allNewDice());
+  }
+
+  const newDiceArray = dice.map((die) => <Die value={die} />);
+
   return (
     <div className="board">
       <Content />
-      <div className="die--container">
-        <Die value="1" />
-        <Die value="1" />
-        <Die value="1" />
-        <Die value="1" />
-        <Die value="1" />
-        <Die value="1" />
-        <Die value="1" />
-        <Die value="1" />
-        <Die value="1" />
-        <Die value="1" />
-      </div>
-      <Button allNewDice={allNewDice} />
+      <div className="die--container">{newDiceArray}</div>
+      <button className="button--roll" onClick={rollDice}>
+        Roll
+      </button>
     </div>
   );
 }
