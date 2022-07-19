@@ -1,3 +1,3 @@
-export default function Button() {
-  return <h3>Button</h3>;
+export default function Button(props) {
+  return <button onClick={props.allNewDice}>Roll</button>;
 }
