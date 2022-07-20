@@ -1,3 +1,7 @@
+# Play Now
+https://brayve-pancake.github.io/tenzies-game/
+
+
 # tenzies-game
 
 #To run this app:
