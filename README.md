@@ -1,3 +1,14 @@
 # tenzies-game
 
-Simple react app created using Vite
+#To run this app:
+
+1. `git clone <SSH>`
+   **Clone** the repo to your local
+
+2. `npm i`
+   This will **install** dependencies
+
+3. `npm run dev`
+   This will **launch** Vite
+
+4. **Play** the game :)
