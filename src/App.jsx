@@ -9,20 +9,49 @@ export default function App() {
   const [dice, setDice] = useState(createAllNewDice());
   const [tenzies, setTenzies] = useState(false);
   const [count, setCount] = useState(0);
-  const [bestScore, setBestScore] = useState("");
+  const [bestScore, setBestScore] = useState(
+    JSON.parse(localStorage.getItem("bestScore")) || []
+  );
+  console.log(JSON.parse(localStorage.getItem("bestScore")));
+
+  // Get bestScore from browser
+  // useEffect(() => {
+  //   const score = JSON.parse(localStorage.getItem("bestScore"));
+  //   console.log("retrieving bestScore" + localStorage.getItem("bestScore"));
+  //   {
+  //     score && setBestScore(score);
+  //   }
+  // }, []);
+
+  // when the app loads, retrieve best score if it exists, else return an empty array.
+  // everytime the bestScore changes, update the score and setItem
 
   useEffect(() => {
     const allOnHold = dice.every((die) => die.onHold === true);
     const winningValue = dice[0].value;
     const allWinningValue = dice.every((die) => die.value === winningValue);
+
+    // localStorage.setItem("bestScore", JSON.stringify(bestScore));
+
     if (allOnHold && allWinningValue) {
       setTenzies(true);
-      if (count < bestScore || bestScore === "") {
+      // Check for new bestScore
+      if (count < bestScore || bestScore.length === 0) {
         setBestScore(count);
+        // Second useEffect() must be used, localStorage.setItem will use old data
       }
       console.log("you won");
     }
   }, [dice]);
+
+  useEffect(() => {
+    console.log("newBestScore" + bestScore);
+    localStorage.setItem("bestScore", JSON.stringify(bestScore));
+  }, [bestScore]);
+
+  // useEffect(() => {
+  //   localStorage.setItem("bestScore", JSON.stringify(bestScore));
+  // }, [bestScore]);
 
   function createAllNewDice() {
     const tempDice = [];
