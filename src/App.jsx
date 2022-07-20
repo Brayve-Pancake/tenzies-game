@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
-import Content from "./components/Content";
-import Die from "./components/Die";
-import { useEffect } from "react";
 import Confetti from "react-confetti";
+import Content from "./components/Content";
+import RollCounter from "./components/RollCounter";
+import Die from "./components/Die";
 
 export default function App() {
   const [dice, setDice] = useState(createAllNewDice());
@@ -42,11 +42,6 @@ export default function App() {
       })
     );
   }
-  // Check to see if die.onHold == true.
-  // if true, then
-
-  // map through the dice array, this callback function will return a new array
-  // each element of that array should be a die object, wi
 
   function holdDice(id) {
     setDice((prevDice) =>
@@ -74,6 +69,7 @@ export default function App() {
 
   return (
     <div className="board">
+      <RollCounter />
       <Content />
       {tenzies && <Confetti />}
       <div className="die--container">{newDiceArray}</div>
