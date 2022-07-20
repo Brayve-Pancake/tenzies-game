@@ -2,7 +2,7 @@
 
 #To run this app:
 
-1. `git clone <SSH>`
+1. `git clone git@github.com:Brayve-Pancake/tenzies-game.git`
    **Clone** the repo to your local
 
 2. `npm i`
