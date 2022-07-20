@@ -8,6 +8,8 @@ import Die from "./components/Die";
 export default function App() {
   const [dice, setDice] = useState(createAllNewDice());
   const [tenzies, setTenzies] = useState(false);
+  const [count, setCount] = useState(0);
+  const [bestScore, setBestScore] = useState("");
 
   useEffect(() => {
     const allOnHold = dice.every((die) => die.onHold === true);
@@ -15,6 +17,9 @@ export default function App() {
     const allWinningValue = dice.every((die) => die.value === winningValue);
     if (allOnHold && allWinningValue) {
       setTenzies(true);
+      if (count < bestScore || bestScore === "") {
+        setBestScore(count);
+      }
       console.log("you won");
     }
   }, [dice]);
@@ -36,6 +41,7 @@ export default function App() {
   }
 
   function rollDice() {
+    setCount((prevCount) => prevCount + 1);
     setDice((prevDice) =>
       prevDice.map((die) => {
         return die.onHold ? die : genNewDie();
@@ -65,11 +71,12 @@ export default function App() {
     console.log("winner");
     setDice(createAllNewDice);
     setTenzies(false);
+    setCount(0);
   }
 
   return (
     <div className="board">
-      <RollCounter />
+      <RollCounter count={count} bestScore={bestScore} />
       <Content />
       {tenzies && <Confetti />}
       <div className="die--container">{newDiceArray}</div>
