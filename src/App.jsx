@@ -12,26 +12,12 @@ export default function App() {
   const [bestScore, setBestScore] = useState(
     JSON.parse(localStorage.getItem("bestScore")) || []
   );
-  console.log(JSON.parse(localStorage.getItem("bestScore")));
-
-  // Get bestScore from browser
-  // useEffect(() => {
-  //   const score = JSON.parse(localStorage.getItem("bestScore"));
-  //   console.log("retrieving bestScore" + localStorage.getItem("bestScore"));
-  //   {
-  //     score && setBestScore(score);
-  //   }
-  // }, []);
-
-  // when the app loads, retrieve best score if it exists, else return an empty array.
-  // everytime the bestScore changes, update the score and setItem
+  // [] stops localStorage returning "undefined"    ^^^^
 
   useEffect(() => {
     const allOnHold = dice.every((die) => die.onHold === true);
     const winningValue = dice[0].value;
     const allWinningValue = dice.every((die) => die.value === winningValue);
-
-    // localStorage.setItem("bestScore", JSON.stringify(bestScore));
 
     if (allOnHold && allWinningValue) {
       setTenzies(true);
@@ -45,13 +31,8 @@ export default function App() {
   }, [dice]);
 
   useEffect(() => {
-    console.log("newBestScore" + bestScore);
     localStorage.setItem("bestScore", JSON.stringify(bestScore));
   }, [bestScore]);
-
-  // useEffect(() => {
-  //   localStorage.setItem("bestScore", JSON.stringify(bestScore));
-  // }, [bestScore]);
 
   function createAllNewDice() {
     const tempDice = [];

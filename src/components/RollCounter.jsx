@@ -1,8 +1,8 @@
 export default function RollCounter(props) {
   return (
-    <div>
-      <h1>Current Score: {props.count}</h1>
-      <h2>Best Score: {props.bestScore}</h2>
+    <div className="rollCounter">
+      <h3>Current Score: {props.count}</h3>
+      <h4>Best Score: {props.bestScore}</h4>
     </div>
   );
 }
